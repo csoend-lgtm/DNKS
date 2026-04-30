@@ -1,0 +1,411 @@
+---
+layout: ../layouts/MainLayout.astro
+title: "Algoritmer"
+description: "Flowcharts og algoritmer for klinisk beslutningstagning ved neurotraumer"
+---
+
+<h1>Kliniske Algoritmer og Flowcharts</h1>
+
+<p class="lead">
+  Denne side indeholder visuelt guidende algoritmer for vigtige kliniske beslutninger 
+  ved behandling af patienter med traumatiske hjerneskader.
+</p>
+
+<h2>1. Inicial Vurdering af Neurotraumapatient</h2>
+
+<div class="algorithm-box">
+  <svg viewBox="0 0 600 500" class="flowchart">
+    <!-- Start -->
+    <ellipse cx="300" cy="40" rx="80" ry="30" fill="#28a745" stroke="#000" stroke-width="2"/>
+    <text x="300" y="45" text-anchor="middle" font-weight="bold" fill="white">PATIENT INDGÅR</text>
+
+    <!-- Arrow -->
+    <line x1="300" y1="70" x2="300" y2="110" stroke="#000" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+    <!-- Check airway -->
+    <rect x="200" y="110" width="200" height="60" fill="#0066cc" stroke="#000" stroke-width="2" rx="5"/>
+    <text x="300" y="140" text-anchor="middle" font-weight="bold" fill="white">Sikre fri luftvej</text>
+    <text x="300" y="160" text-anchor="middle" fill="white">Head Tilt, Chin Lift</text>
+
+    <!-- Arrow -->
+    <line x1="300" y1="170" x2="300" y2="210" stroke="#000" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+    <!-- Check breathing -->
+    <rect x="200" y="210" width="200" height="60" fill="#0066cc" stroke="#000" stroke-width="2" rx="5"/>
+    <text x="300" y="240" text-anchor="middle" font-weight="bold" fill="white">Kontroller ventilation</text>
+    <text x="300" y="260" text-anchor="middle" fill="white">SpO2 >95%, EtCO2 35-45</text>
+
+    <!-- Arrow -->
+    <line x1="300" y1="270" x2="300" y2="310" stroke="#000" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+    <!-- Check GCS -->
+    <rect x="200" y="310" width="200" height="60" fill="#0066cc" stroke="#000" stroke-width="2" rx="5"/>
+    <text x="300" y="340" text-anchor="middle" font-weight="bold" fill="white">Vurder bevidsthed</text>
+    <text x="300" y="360" text-anchor="middle" fill="white">GCS score</text>
+
+    <!-- Split based on GCS -->
+    <!-- Left: GCS <= 8 -->
+    <line x1="200" y1="370" x2="100" y2="410" stroke="#000" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <text x="120" y="395" font-weight="bold" fill="#dc3545">GCS ≤ 8</text>
+
+    <rect x="20" y="410" width="160" height="70" fill="#dc3545" stroke="#000" stroke-width="2" rx="5"/>
+    <text x="100" y="435" text-anchor="middle" font-weight="bold" fill="white">KRITISK</text>
+    <text x="100" y="455" text-anchor="middle" fill="white">Intubation</text>
+    <text x="100" y="470" text-anchor="middle" fill="white">CT hjerne</text>
+
+    <!-- Right: GCS > 8 -->
+    <line x1="400" y1="370" x2="500" y2="410" stroke="#000" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <text x="460" y="395" font-weight="bold" fill="#ff9800">GCS > 8</text>
+
+    <rect x="420" y="410" width="160" height="70" fill="#ff9800" stroke="#000" stroke-width="2" rx="5"/>
+    <text x="500" y="435" text-anchor="middle" font-weight="bold" fill="white">MODERAT/MILD</text>
+    <text x="500" y="455" text-anchor="middle" fill="white">Overvågning</text>
+    <text x="500" y="470" text-anchor="middle" fill="white">Evt. CT</text>
+
+    <!-- Arrow marker definition -->
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+        <polygon points="0 0, 10 3, 0 6" fill="#000"/>
+      </marker>
+    </defs>
+  </svg>
+</div>
+
+<div class="algorithm-legend">
+  <span class="legend-item" style="background: #28a745;">Start</span>
+  <span class="legend-item" style="background: #0066cc;">Handling</span>
+  <span class="legend-item" style="background: #dc3545;">Kritisk</span>
+  <span class="legend-item" style="background: #ff9800;">Vigtig</span>
+</div>
+
+<h2>2. Visitation og Transport Algoritme</h2>
+
+<div class="algorithm-box">
+  <div class="decision-tree">
+    <div class="tree-node root">
+      <strong>Patient med hjerneskade</strong>
+    </div>
+
+    <div class="tree-branches">
+      <div class="tree-branch">
+        <div class="tree-condition">GCS ≤ 8 ELLER</div>
+        <div class="tree-condition">Intrakranial blødning på CT ELLER</div>
+        <div class="tree-condition">Midtlinieshifte > 5mm</div>
+        <div class="tree-outcome critical">
+          ⚕️ NIVEAU 1 - Neurokirurgisk center
+          <div class="details">Akut transport, Neurokir. konsultation</div>
+        </div>
+      </div>
+
+      <div class="tree-branch">
+        <div class="tree-condition">GCS 9-12 ELLER</div>
+        <div class="tree-condition">Bevidstløshed efter skaden ELLER</div>
+        <div class="tree-condition">Fokale neurologiske tegn</div>
+        <div class="tree-outcome warning">
+          ⚕️ NIVEAU 2 - Regional hospital
+          <div class="details">Transport med overvågning, CT hjerne</div>
+        </div>
+      </div>
+
+      <div class="tree-branch">
+        <div class="tree-condition">GCS 15 UDEN symptomer ELLER</div>
+        <div class="tree-condition">Lette symptomer, stabil</div>
+        <div class="tree-outcome success">
+          ⚕️ NIVEAU 3 - Lokal skadestue
+          <div class="details">Evt. ambulant overvågning</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2>3. Behandling af Intrakranielt Tryks (ICP)</h2>
+
+<div class="algorithm-box">
+  <div class="icp-protocol">
+    <h3>ICP Håndtering Trin for Trin</h3>
+
+    <div class="step">
+      <div class="step-number">1</div>
+      <div class="step-content">
+        <strong>Primær håndtering:</strong>
+        <ul>
+          <li>Hoved i 30° højde</li>
+          <li>Normal PaCO2 (35-45 mmHg)</li>
+          <li>Normal temperatur</li>
+          <li>Sedering og analgesi efter behov</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">2</div>
+      <div class="step-content">
+        <strong>Hvis ICP > 20 mmHg:</strong>
+        <ul>
+          <li>Mannitol 0.25-1 g/kg IV eller</li>
+          <li>3% NaCl 5-10 mL/kg IV</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">3</div>
+      <div class="step-content">
+        <strong>Hvis fortsættende problemer:</strong>
+        <ul>
+          <li>Mild hyperventilation (målpCO2: 30-35 mmHg)</li>
+          <li>Evt. barbituratindlæggelse</li>
+          <li>Evt. dekompressionskraniotomi</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2>4. CT-Hjernescan Indikationer</h2>
+
+<div class="algorithm-box">
+  <table class="ct-indications">
+    <thead>
+      <tr>
+        <th>Situation</th>
+        <th>Indikation for CT</th>
+        <th>Timing</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>GCS &lt; 15</strong></td>
+        <td>AKUT CT hjerne</td>
+        <td>Indenfor 1 time</td>
+      </tr>
+      <tr>
+        <td><strong>Mistanke fraktur</strong></td>
+        <td>AKUT CT hjerne</td>
+        <td>Indenfor 1 time</td>
+      </tr>
+      <tr>
+        <td><strong>Bevidstløshed</strong></td>
+        <td>AKUT CT hjerne</td>
+        <td>Indenfor 30 min</td>
+      </tr>
+      <tr>
+        <td><strong>Gentagende opkastning</strong></td>
+        <td>AKUT CT hjerne</td>
+        <td>Indenfor 2 timer</td>
+      </tr>
+      <tr>
+        <td><strong>Krampeanfald</strong></td>
+        <td>AKUT CT hjerne</td>
+        <td>Indenfor 1 time</td>
+      </tr>
+      <tr>
+        <td><strong>Blødning fra øre</strong></td>
+        <td>AKUT CT hjerne</td>
+        <td>Indenfor 1 time</td>
+      </tr>
+      <tr>
+        <td><strong>Neurologisk forværring</strong></td>
+        <td>AKUT CT hjerne</td>
+        <td>ØJEBLIKKELIGT</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="alert alert-danger" style="margin-top: var(--space-2xl);">
+  <div class="alert-title">🚨 Vigtige noter til algoritmer</div>
+  <ul>
+    <li>Algoritmer er vejledende - følg altid klinisk vurdering</li>
+    <li>Ved tvivl, konsulter altid den relevante specialist</li>
+    <li>Lokale procedurer kan afvige - følg dit hospitals protokoller</li>
+    <li>Tidsangivelser er target-tider, ikke absolutte maksima</li>
+  </ul>
+</div>
+
+<style>
+  .lead {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-xl);
+  }
+
+  .algorithm-box {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    padding: var(--space-xl);
+    margin: var(--space-xl) 0;
+    overflow-x: auto;
+  }
+
+  .flowchart {
+    width: 100%;
+    height: auto;
+    background: white;
+  }
+
+  .algorithm-legend {
+    display: flex;
+    gap: var(--space-md);
+    margin: var(--space-lg) 0;
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--border-radius-md);
+    color: white;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-sm);
+  }
+
+  .decision-tree {
+    background: white;
+  }
+
+  .tree-node {
+    padding: var(--space-lg);
+    background: var(--color-primary);
+    color: white;
+    border-radius: var(--border-radius-lg);
+    text-align: center;
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-xl);
+  }
+
+  .tree-branches {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .tree-branch {
+    border-left: 4px solid var(--color-primary);
+    padding-left: var(--space-lg);
+  }
+
+  .tree-condition {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-sm);
+    padding: var(--space-sm) 0;
+    border-bottom: 1px dashed var(--color-border);
+  }
+
+  .tree-condition:last-of-type {
+    margin-bottom: var(--space-lg);
+    border-bottom: 2px solid var(--color-primary);
+  }
+
+  .tree-outcome {
+    padding: var(--space-lg);
+    border-radius: var(--border-radius-lg);
+    font-weight: var(--font-weight-semibold);
+    color: white;
+    text-align: center;
+  }
+
+  .tree-outcome.critical {
+    background: var(--color-danger);
+  }
+
+  .tree-outcome.warning {
+    background: var(--color-warning);
+  }
+
+  .tree-outcome.success {
+    background: var(--color-success);
+  }
+
+  .details {
+    font-size: var(--font-size-sm);
+    font-weight: normal;
+    margin-top: var(--space-sm);
+    opacity: 0.9;
+  }
+
+  .icp-protocol {
+    background: var(--color-bg-light);
+    padding: var(--space-lg);
+    border-radius: var(--border-radius-lg);
+  }
+
+  .step {
+    display: flex;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .step:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .step-number {
+    min-width: 40px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-primary);
+    color: white;
+    border-radius: 50%;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .step-content strong {
+    display: block;
+    margin-bottom: var(--space-md);
+  }
+
+  .step-content ul {
+    margin: 0;
+    padding-left: var(--space-lg);
+  }
+
+  .ct-indications {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .ct-indications th,
+  .ct-indications td {
+    padding: var(--space-md);
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .ct-indications th {
+    background: var(--color-primary-light);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .ct-indications tr:hover {
+    background: var(--color-bg-light);
+  }
+
+  @media (max-width: 768px) {
+    .algorithm-box {
+      padding: var(--space-lg);
+    }
+
+    .tree-branches {
+      grid-template-columns: 1fr;
+    }
+
+    .ct-indications {
+      font-size: var(--font-size-sm);
+    }
+
+    .ct-indications th,
+    .ct-indications td {
+      padding: var(--space-sm);
+    }
+  }
+</style>
